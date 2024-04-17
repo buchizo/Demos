@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34728.123
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocumentIntelligenceDemo", "DocumentIntelligenceDemo\DocumentIntelligenceDemo.csproj", "{B4BECBAB-B75A-44B1-9FF0-D8C8B833974E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B4BECBAB-B75A-44B1-9FF0-D8C8B833974E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4BECBAB-B75A-44B1-9FF0-D8C8B833974E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4BECBAB-B75A-44B1-9FF0-D8C8B833974E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4BECBAB-B75A-44B1-9FF0-D8C8B833974E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {96E15C4A-7ADD-468D-8A26-BD553295B312}
+	EndGlobalSection
+EndGlobal
