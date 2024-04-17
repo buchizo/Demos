@@ -32,6 +32,7 @@ var ops = await client.AnalyzeDocumentAsync(
     features:
     [
         DocumentAnalysisFeature.KeyValuePairs,
+        DocumentAnalysisFeature.OcrHighResolution,
     ],
     outputContentFormat: ContentFormat.Markdown,
     cancellationToken: default
