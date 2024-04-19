@@ -1,6 +1,11 @@
 ﻿using Azure;
 using Azure.AI.DocumentIntelligence;
+using DocumentIntelligenceDemo;
+using iTextSharp.text.pdf;
+using iTextSharp.text.pdf.parser;
 using Microsoft.Extensions.Configuration;
+using System.Drawing;
+using System.Drawing.Imaging;
 
 var config = new ConfigurationBuilder()
     .AddUserSecrets<Program>()
@@ -25,9 +30,10 @@ var documentUri = Console.ReadLine() ?? "";
 var ops = await client.AnalyzeDocumentAsync(
     WaitUntil.Started,
     model,
-    analyzeRequest: new AnalyzeDocumentContent() {
+    analyzeRequest: new AnalyzeDocumentContent()
+    {
         UrlSource = new Uri(documentUri)
-//        Base64Source = await BinaryData.FromStreamAsync(file)
+        //        Base64Source = await BinaryData.FromStreamAsync(file)
     },
     features:
     [
@@ -38,6 +44,17 @@ var ops = await client.AnalyzeDocumentAsync(
     cancellationToken: default
 );
 
-var result = await ops.WaitForCompletionAsync();
+var res = await ops.WaitForCompletionAsync();
+var result = res.Value;
+
+// markdown
+await File.WriteAllTextAsync("content.md", result.Content);
+await File.WriteAllTextAsync("result.json", result.ToJson());
+
+Console.WriteLine("--- figures ---");
+foreach (var f in result.Figures.Take(2))
+{
+    Console.WriteLine(f.ToJson());
+}
 
 Console.WriteLine("finished");
