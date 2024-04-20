@@ -1,11 +1,7 @@
 ﻿using Azure;
 using Azure.AI.DocumentIntelligence;
 using DocumentIntelligenceDemo;
-using iTextSharp.text.pdf;
-using iTextSharp.text.pdf.parser;
 using Microsoft.Extensions.Configuration;
-using System.Drawing;
-using System.Drawing.Imaging;
 
 var config = new ConfigurationBuilder()
     .AddUserSecrets<Program>()
@@ -20,7 +16,7 @@ var client = new DocumentIntelligenceClient(
             new DocumentIntelligenceClientOptions(DocumentIntelligenceClientOptions.ServiceVersion.V2024_02_29_Preview)
             );
 
-var model = "prebuilt-layout";
+var modelId = "prebuilt-layout";
 
 Console.Write("input document uri: ");
 var documentUri = Console.ReadLine() ?? "";
@@ -29,7 +25,7 @@ var documentUri = Console.ReadLine() ?? "";
 
 var ops = await client.AnalyzeDocumentAsync(
     WaitUntil.Started,
-    model,
+    modelId,
     analyzeRequest: new AnalyzeDocumentContent()
     {
         UrlSource = new Uri(documentUri)
@@ -49,7 +45,6 @@ var result = res.Value;
 
 // markdown
 await File.WriteAllTextAsync("content.md", result.Content);
-await File.WriteAllTextAsync("result.json", result.ToJson());
 
 Console.WriteLine("--- figures ---");
 foreach (var f in result.Figures.Take(2))
