@@ -1,8 +1,8 @@
 use std::env;
 use std::path::PathBuf;
 
-use hyperlight_host::func::ParameterValue;
-use hyperlight_host::func::ReturnType;
+
+use hyperlight_host::func::{ParameterValue, ReturnType};
 use hyperlight_host::sandbox_state::sandbox::EvolvableSandbox;
 use hyperlight_host::sandbox_state::transition::Noop;
 use hyperlight_host::{MultiUseSandbox, UninitializedSandbox};

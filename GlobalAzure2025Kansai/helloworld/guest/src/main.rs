@@ -3,31 +3,33 @@
 
 extern crate alloc;
 
-use alloc::string::ToString;
-use alloc::vec::Vec;
-use hyperlight_common::flatbuffer_wrappers::function_call::FunctionCall;
-use hyperlight_common::flatbuffer_wrappers::function_types::{
-    ParameterType, ParameterValue, ReturnType,
+use alloc::{string::ToString, vec::Vec};
+use hyperlight_common::flatbuffer_wrappers::{
+    function_call::FunctionCall,
+    function_types::{ParameterType, ParameterValue, ReturnType},
+    guest_error::ErrorCode,
 };
-use hyperlight_common::flatbuffer_wrappers::guest_error::ErrorCode;
-use hyperlight_common::flatbuffer_wrappers::util::get_flatbuffer_result;
-
-use hyperlight_guest::error::{HyperlightGuestError, Result};
-use hyperlight_guest::guest_function_definition::GuestFunctionDefinition;
-use hyperlight_guest::guest_function_register::register_function;
-use hyperlight_guest::host_function_call::{
-    call_host_function, get_host_return_value,
+use hyperlight_common::flatbuffer_wrappers::util::{get_flatbuffer_result};
+use hyperlight_guest::{
+    error::HyperlightGuestError,
+    guest_function_definition::GuestFunctionDefinition,
+    guest_function_register::register_function,
+    host_function_call::{call_host_function, get_host_return_value},
 };
 
-fn print_output(function_call: &FunctionCall) -> Result<Vec<u8>> {
+fn print_output(message: &str) -> hyperlight_guest::error::Result<Vec<u8>> {
+    call_host_function(
+        "HostPrint",
+        Some(Vec::from(&[ParameterValue::String(message.to_string())])),
+        ReturnType::Int,
+    )?;
+    let result = get_host_return_value::<i32>()?;
+    Ok(get_flatbuffer_result(result))
+}
+
+fn simple_print_output(function_call: &FunctionCall) -> hyperlight_guest::error::Result<Vec<u8>> {
     if let ParameterValue::String(message) = function_call.parameters.clone().unwrap()[0].clone() {
-        call_host_function(
-            "HostPrint",
-            Some(Vec::from(&[ParameterValue::String(message.to_string())])),
-            ReturnType::Int,
-        )?;
-        let result = get_host_return_value::<i32>()?;
-        Ok(get_flatbuffer_result(result))
+        print_output(&message)
     } else {
         Err(HyperlightGuestError::new(
             ErrorCode::GuestFunctionParameterTypeMismatch,
@@ -38,16 +40,16 @@ fn print_output(function_call: &FunctionCall) -> Result<Vec<u8>> {
 
 #[no_mangle]
 pub extern "C" fn hyperlight_main() {
-    let print_output_def = GuestFunctionDefinition::new(
+    let simple_print_output_def = GuestFunctionDefinition::new(
         "PrintOutput".to_string(),
         Vec::from(&[ParameterType::String]),
         ReturnType::Int,
-        print_output as usize,
+        simple_print_output as usize,
     );
-    register_function(print_output_def);
+    register_function(simple_print_output_def);
 }
 
 #[no_mangle]
-pub fn guest_dispatch_function(_function_call: FunctionCall) -> Result<Vec<u8>> {
+pub fn guest_dispatch_function(_: &FunctionCall) -> hyperlight_guest::error::Result<Vec<u8>> {
     Ok(get_flatbuffer_result(99))
 }
