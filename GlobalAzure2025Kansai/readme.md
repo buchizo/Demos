@@ -2,8 +2,17 @@
 
 [Global Azure 2025 @ Kansai](https://tfsug.connpass.com/event/348543/) の 「さわってみよう Hyperlight」関連のデモです。
 
+## Hello world sample
+
+Hyperlight をセットアップした WSL内の `helloworld` フォルダーで以下を実行
+
+```sh
+just download-hyperlight
+```
+
 ## その他関連情報
 
+- [発表時資料]() ※ TBD
 - Hyperlight (GitHub)
   - [https://github.com/hyperlight-dev](https://github.com/hyperlight-dev)
   - [https://github.com/hyperlight-dev/hyperlight](https://github.com/hyperlight-dev/hyperlight)
@@ -15,4 +24,4 @@
   - [Introducing Hyperlight: Virtual machine-based security for functions at scale](https://opensource.microsoft.com/blog/2024/11/07/introducing-hyperlight-virtual-machine-based-security-for-functions-at-scale/)
   - [Hyperlight: Achieving 0.0009-second micro-VM execution time](https://opensource.microsoft.com/blog/2025/02/11/hyperlight-creating-a-0-0009-second-micro-vm-execution-time/)
   - [Hyperlight Wasm: Fast, secure, and OS-free](https://opensource.microsoft.com/blog/2025/03/26/hyperlight-wasm-fast-secure-and-os-free/)
-  
+

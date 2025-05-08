@@ -1,0 +1,11 @@
+[package]
+name = "helloworld_host"
+version = "0.0.1"
+edition = "2021"
+
+[dependencies]
+hyperlight-host = "0.4.0"
+hyperlight-common = "0.4.0"
+
+[profile.release]
+debug = true

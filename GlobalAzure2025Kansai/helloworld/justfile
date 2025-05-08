@@ -1,0 +1,26 @@
+#hyperlight_tag := "v0.4.0"
+#hyperlight_dir := "hyperlight-0.4.0"
+
+#download-hyperlight:
+#    wget https://github.com/hyperlight-dev/hyperlight/archive/refs/tags/{{hyperlight_tag}}.tar.gz && mkdir -p hyperlight && tar -xvf {{hyperlight_tag}}.tar.gz -C hyperlight
+#    rm {{hyperlight_tag}}.tar.gz
+
+clean: clean-both
+
+clean-both:
+    cd host && cargo clean --target-dir ../target
+    cd guest && cargo clean --target-dir ../target
+
+build-guest:
+    cd guest && cargo build --target-dir ../target --target=x86_64-unknown-none
+
+build-host:
+    cd host && cargo build --target-dir ../target
+
+run-host:
+    cp target/x86_64-unknown-none/debug/helloworld_guest target/debug
+    cd target/debug && ./helloworld_host
+
+run-host-from-cargo:
+    cp target/x86_64-unknown-none/debug/helloworld_guest host
+    cd host && cargo run --target-dir ../target
