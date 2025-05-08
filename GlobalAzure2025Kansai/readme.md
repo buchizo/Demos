@@ -7,7 +7,9 @@
 Hyperlight をセットアップした WSL内の `helloworld` フォルダーで以下を実行
 
 ```sh
-just download-hyperlight
+just build-guest
+just build-host
+just run-host
 ```
 
 ## その他関連情報
