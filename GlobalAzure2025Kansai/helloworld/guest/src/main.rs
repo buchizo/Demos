@@ -12,24 +12,21 @@ use hyperlight_common::flatbuffer_wrappers::{
 use hyperlight_common::flatbuffer_wrappers::util::{get_flatbuffer_result};
 use hyperlight_guest::{
     error::HyperlightGuestError,
+    error::Result,
     guest_function_definition::GuestFunctionDefinition,
     guest_function_register::register_function,
     host_function_call::{call_host_function, get_host_return_value},
 };
 
-fn print_output(message: &str) -> hyperlight_guest::error::Result<Vec<u8>> {
-    call_host_function(
-        "HostPrint",
-        Some(Vec::from(&[ParameterValue::String(message.to_string())])),
-        ReturnType::Int,
-    )?;
-    let result = get_host_return_value::<i32>()?;
-    Ok(get_flatbuffer_result(result))
-}
-
 fn simple_print_output(function_call: &FunctionCall) -> hyperlight_guest::error::Result<Vec<u8>> {
     if let ParameterValue::String(message) = function_call.parameters.clone().unwrap()[0].clone() {
-        print_output(&message)
+        call_host_function(
+            "HostPrint",
+            Some(Vec::from(&[ParameterValue::String(message.to_string())])),
+            ReturnType::Int,
+        )?;
+        let result = get_host_return_value::<i32>()?;
+        Ok(get_flatbuffer_result(result))
     } else {
         Err(HyperlightGuestError::new(
             ErrorCode::GuestFunctionParameterTypeMismatch,
@@ -50,6 +47,6 @@ pub extern "C" fn hyperlight_main() {
 }
 
 #[no_mangle]
-pub fn guest_dispatch_function(_: &FunctionCall) -> hyperlight_guest::error::Result<Vec<u8>> {
+pub fn guest_dispatch_function(function_call: FunctionCall) -> Result<Vec<u8>> {
     Ok(get_flatbuffer_result(99))
 }

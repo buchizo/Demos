@@ -67,7 +67,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "2304e00983f87ffb38b55b444b5e3b60a884b5d30c0fca7d82fe33449bbe55ea"
 
 [[package]]
-name = "helloworld_guest"
+name = "helloworld-guest"
 version = "0.0.1"
 dependencies = [
  "hyperlight-common",
@@ -76,9 +76,9 @@ dependencies = [
 
 [[package]]
 name = "hyperlight-common"
-version = "0.4.0"
+version = "0.5.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7cafefb834bc238eaa250332ce7b62b93165f1997983181f60ec77fd026bfe70"
+checksum = "cc29cd375b0fb5bf76c891c5c6e43bad23e7b7a4fb41a2b4c56881268f68f2af"
 dependencies = [
  "anyhow",
  "flatbuffers",
@@ -88,9 +88,9 @@ dependencies = [
 
 [[package]]
 name = "hyperlight-guest"
-version = "0.4.0"
+version = "0.5.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "19ff10d22a2472deb4503e57e859410ff45b952951cfa5ff7e85b90fc527f3b1"
+checksum = "4346787974da7ed2461bc6f128a736ced7653193470e622ffb7335532f79c17e"
 dependencies = [
  "anyhow",
  "buddy_system_allocator",

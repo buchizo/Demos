@@ -1,0 +1,8 @@
+[package]
+name = "helloworld-wasm-host"
+edition = "2021"
+
+[dependencies]
+hyperlight-host = { version = "0.4.0" }
+hyperlight-common = { version = "0.4.0" }
+hyperlight-wasm = { git = "https://github.com/hyperlight-dev/hyperlight-wasm" }

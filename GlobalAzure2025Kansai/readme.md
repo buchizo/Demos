@@ -4,12 +4,19 @@
 
 ## Hello world sample
 
-Hyperlight をセットアップした WSL内の `helloworld` フォルダーで以下を実行
+Rust, just など Hyperlight 関連のツールをインストールしたWSL上の `helloworld` フォルダーで以下を実行
 
 ```sh
 just build-guest
 just build-host
 just run-host
+```
+
+## Hello world WASM sample
+
+Rust, just など Hyperlight 関連のツールをインストールしたWSL上の `helloworld-wasm` フォルダーで以下を実行
+
+```sh
 ```
 
 ## その他関連情報

@@ -18,9 +18,9 @@ build-host:
     cd host && cargo build --target-dir ../target
 
 run-host:
-    cp target/x86_64-unknown-none/debug/helloworld_guest target/debug
-    cd target/debug && ./helloworld_host
+    cp target/x86_64-unknown-none/debug/helloworld-guest target/debug
+    cd target/debug && ./helloworld-host
 
 run-host-from-cargo:
-    cp target/x86_64-unknown-none/debug/helloworld_guest host
+    cp target/x86_64-unknown-none/debug/helloworld-guest host
     cd host && cargo run --target-dir ../target
