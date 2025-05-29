@@ -4,7 +4,7 @@
 
 ## Hello world sample
 
-Rust, just など Hyperlight 関連のツールをインストールしたWSL上の `helloworld` フォルダーで以下を実行
+Rust, just など Hyperlight 関連のツールをインストールしたWSL上の `helloworld` フォルダーで以下を実行(現状なんだかよくわからないけど動作しない…）
 
 ```sh
 just build-guest
@@ -21,7 +21,7 @@ Rust, just など Hyperlight 関連のツールをインストールしたWSL上
 
 ## その他関連情報
 
-- [発表時資料]() ※ TBD
+- [発表時資料](https://speakerdeck.com/kosmosebi/hyperlight)
 - Hyperlight (GitHub)
   - [https://github.com/hyperlight-dev](https://github.com/hyperlight-dev)
   - [https://github.com/hyperlight-dev/hyperlight](https://github.com/hyperlight-dev/hyperlight)
