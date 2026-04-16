@@ -11,7 +11,6 @@ Console.WriteLine($"\"{keyword}\" が検出されるまで待ちます..");
 
 await keywordRecognizer.RecognizeOnceAsync(keywordModel);
 
-Console.WriteLine($"\"{keyword}\" を検出しました (enterで終了)");
-Console.ReadKey();
+Console.WriteLine($"\"{keyword}\" を検出しました");
 
 await keywordRecognizer.StopRecognitionAsync();

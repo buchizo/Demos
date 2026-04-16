@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="CustomKeywordSample/CustomKeywordSample.csproj" />
+  <Project Path="STTSample/STTSample.csproj" Id="71e2b854-710c-4b03-9da7-bb445ef3901c" />
+</Solution>
