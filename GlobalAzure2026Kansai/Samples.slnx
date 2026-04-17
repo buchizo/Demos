@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="CustomKeywordSample/CustomKeywordSample.csproj" />
+  <Project Path="STTSample/STTSample.csproj" Id="71e2b854-710c-4b03-9da7-bb445ef3901c" />
+  <Project Path="TranslateSample/TranslateSample.csproj" Id="fadb5886-af7f-487a-8038-dc5967371b33" />
+  <Project Path="TTSSample/TTSSample.csproj" Id="32d54f8e-0fde-4712-b185-f7f1a0669e16" />
+</Solution>
