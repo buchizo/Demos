@@ -2,11 +2,17 @@
 
 サンプルは基本的には .NET 10 を使用。
 
+- 環境変数に Azure Speech のAPIエンドポイントとAPIキーを設定する。
+  - `AzureSpeechEndpoint` … APIエンドポイント
+  - `AzureSpeechApiKey` … APIキー
+
 - CustomKeywordSample
   - カスタムキーワード機能を使ったWake wordのサンプル。 `Hey Kosmos` を認識する。
 - STTSample
-  - 音声 → テキスト変換のサンプル。環境変数に Azure Speech のAPIエンドポイントとAPIキーを設定する。
-    - `AzureSpeechEndpoint` … APIエンドポイント
-    - `AzureSpeechApiKey` … APIキー
+  - 音声 → テキスト変換のサンプル。
+- TTSSample
+  - テキスト → 音声合成のサンプル。
+- TranslateSample
+  - 音声 → テキスト＋翻訳＋音声合成のサンプル。
 
 [公式サンプル](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/)も参考に。
