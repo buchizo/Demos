@@ -22,18 +22,19 @@ recognizer.Recognized += (s, e) =>
         Console.WriteLine($"RECOGNIZED: {e.Result.Text}");
         stopRecognition.TrySetResult(0);
     }
-    else if (e.Result.Reason == ResultReason.NoMatch)
-    {
-        Console.WriteLine($"NOMATCH: Speech could not be recognized.");
-    }
 };
 
-await recognizer.StartContinuousRecognitionAsync();
-
-do
-{
-    await Task.Delay(TimeSpan.FromMilliseconds(200));
-}
-while (true);
+// continuous
+//await recognizer.StartContinuousRecognitionAsync();
+//do
+//{
+//    await Task.Delay(TimeSpan.FromMilliseconds(200));
+//}
+//while (true);
 
 //await recognizer.StopContinuousRecognitionAsync();
+
+// once
+await recognizer.RecognizeOnceAsync();
+Console.WriteLine("hit any key.");
+Console.ReadKey();
