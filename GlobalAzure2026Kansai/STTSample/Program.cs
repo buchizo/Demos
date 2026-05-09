@@ -7,19 +7,22 @@ using var audioConfig = AudioConfig.FromDefaultMicrophoneInput();
 var config = SpeechConfig.FromEndpoint(new Uri(Environment.GetEnvironmentVariable("AzureSpeechEndpoint") ?? ""), Environment.GetEnvironmentVariable("AzureSpeechApiKey"));
 config.SpeechRecognitionLanguage = "ja-JP";
 
+// use post refinement (2pass)
+config.SetProperty(PropertyId.SpeechServiceResponse_PostProcessingOption, "PostRefinement");
+
 using var recognizer = new SpeechRecognizer(config, audioConfig);
 var stopRecognition = new TaskCompletionSource<int>(TaskCreationOptions.RunContinuationsAsynchronously);
 
 recognizer.Recognizing += (s, e) =>
 {
-    Console.WriteLine($"RECOGNIZING: {e.Result.Text}");
+    Console.WriteLine($"{DateTimeOffset.Now:HH:mm.ss} RECOGNIZING: {e.Result.Text}");
 };
 
 recognizer.Recognized += (s, e) =>
 {
     if (e.Result.Reason == ResultReason.RecognizedSpeech)
     {
-        Console.WriteLine($"RECOGNIZED: {e.Result.Text}");
+        Console.WriteLine($"{DateTimeOffset.Now:HH:mm.ss} RECOGNIZED: {e.Result.Text}");
         stopRecognition.TrySetResult(0);
     }
 };
